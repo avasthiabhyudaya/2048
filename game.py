@@ -32,8 +32,11 @@ class logic:
             if skip:
                 skip = False
                 continue
+
             if j != len(this_n) - 1 and this_n[j] == this_n[j+1]:
                 new_n = this_n[j] * 2
+                if new_n == 2048:
+                    exit()
                 skip = True
 
             else:
@@ -73,7 +76,7 @@ class logic:
         while True:
             print(self.grid)
             cmd = input()
-            if cmd == 'q':
+            if cmd == "q":
                 break
             old_grid = self.grid.copy()
             self.movemade(cmd)
