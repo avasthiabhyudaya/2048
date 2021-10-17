@@ -52,11 +52,25 @@ class logic:
             new_this[:len(this_n)] = this_n
             self.grid[i, :] = new_this
 
+    def play(self):
+        self.newnumber(k=2)
+        while True:
+            print(self.grid)
+            cmd = input()
+            if cmd == 'q':
+                break
+            old_grid = self.grid.copy()
+            self.movemade(cmd)
+            if all((self.grid == old_grid).flatten()):
+                continue
+            self.newnumber()
+
 
 if __name__ == '__main__':
     game = logic()
-    game.newnumber(k=2)
-    game.newnumber(k=2)
-    print(game)
-    game.movemade(move='l')
-    print(game)
+    game.play()
+    # game.newnumber(k=2)
+    # game.newnumber(k=2)
+    # print(game)
+    # game.movemade(move='l')
+    # print(game)
