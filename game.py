@@ -45,12 +45,28 @@ class logic:
 
     def movemade(self, move):
         for i in range(N):
-            this = self.grid[i, :]  # all columns for this row
+            if move in 'lr':
+                this = self.grid[i, :]
+            else:
+                this = self.grid[:, i]
+
+            flipped = False
+            if move in 'rd':
+                flipped = True
+                this = this[::-1]
+
             this_n = self._get_nums(this)
 
             new_this = np.zeros_like(this)
             new_this[:len(this_n)] = this_n
-            self.grid[i, :] = new_this
+
+            if flipped:
+                new_this = new_this[::-1]
+
+            if move in 'lr':
+                self.grid[i, :] = new_this
+            else:
+                self.grid[:, i] = new_this
 
     def play(self):
         self.newnumber(k=2)
